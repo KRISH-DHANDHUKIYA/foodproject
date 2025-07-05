@@ -1,4 +1,4 @@
-functionsDirectory = "E:\\fronteddesigning\\food_order_project\\frontend\\netlify\\functions"
+functionsDirectory = "E:\\fronteddesigning\\food_order_project\\frontend\\\fronteddesigning\food_order_project\frontend\netlify\functions"
 functionsDirectoryOrigin = "config-v1"
 plugins = []
 headers = []
@@ -9,12 +9,11 @@ redirects = []
 [functions."*"]
 
 [build]
-publish = "E:\\fronteddesigning\\food_order_project\\frontend\\npm run build"
+publish = "E:\\fronteddesigning\\food_order_project\\frontend\\dist"
 publishOrigin = "config"
 commandOrigin = "config"
-base = "E:\\fronteddesigning\\food_order_project\\frontend"
 command = "# no build command"
-functions = "E:\\fronteddesigning\\food_order_project\\frontend\\netlify\\functions"
+functions = "E:\\fronteddesigning\\food_order_project\\frontend\\\fronteddesigning\food_order_project\frontend\netlify\functions"
 
 [build.environment]
 
