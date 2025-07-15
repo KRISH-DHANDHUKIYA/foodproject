@@ -8,8 +8,8 @@ import Login from "../Pages/Login"
 import Placeorder from "../Pages/Placeorder"
 import Orders from "../Pages/Orders"
 import Verify from "../Pages/Verify"
-import Admin from "../Pages/Admin"
 import Notpage from "../Pages/Notpage"
+import Aboutus from "../Pages/Aboutus"
 
 const Endroute = () => {
     return (
@@ -17,6 +17,7 @@ const Endroute = () => {
             <Routes>
                 <Route path="/" element={<Endlayout />}>
                     <Route index element={<Home />} />
+                    <Route index element={<Aboutus />} />
                     <Route index element={<Menu />} />
                     <Route index element={<Contactus />} />
                     <Route index element={<Card />} />
@@ -24,7 +25,6 @@ const Endroute = () => {
                     <Route index element={<Placeorder />} />
                     <Route index element={<Orders />} />
                     <Route index element={<Verify />} />
-                    <Route index element={<Admin />} />
                     <Route index element={<Notpage />} />
                 </Route>
             </Routes>
