@@ -3,7 +3,7 @@ import { Badge, Button, Container, Nav, Navbar } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
 import { ShopContext } from "../Context/ShopContext";
 import { TbArrowNarrowRight, TbUserCircle } from "react-icons/tb";
-import Login from "../Components/Login"
+import Login from "../Components/Login";
 
 const Header = () => {
     const { getCartCount, token } = useContext(ShopContext);
@@ -36,7 +36,11 @@ const Header = () => {
                 onToggle={() => setExpanded(!expanded)}
             >
                 <Container>
-                    <Link to="/" onClick={handleNavLinkClick} className="navbar-brand fw-bold fs-4 text-decoration-none text-light">
+                    <Link
+                        to="/"
+                        onClick={handleNavLinkClick}
+                        className="navbar-brand fw-bold fs-4 text-decoration-none text-light"
+                    >
                         FoodExpress
                     </Link>
 
@@ -66,13 +70,55 @@ const Header = () => {
                                 Contact Us
                             </Link>
 
-                            <div className="d-lg-none mt-3">
+                            {/* Mobile Profile/Login Section */}
+                            <div className="d-lg-none mt-3 position-relative text-center">
                                 {token ? (
-                                    <div className="my-2 text-center">
-                                        <Link to="/profile" onClick={handleNavLinkClick}>
+                                    <>
+                                        <div
+                                            className="my-2"
+                                            onClick={() => setShowDropdown(!showDropdown)}
+                                            style={{ cursor: "pointer" }}
+                                        >
                                             <TbUserCircle style={{ fontSize: "29px", color: "white" }} />
-                                        </Link>
-                                    </div>
+                                        </div>
+
+                                        {showDropdown && (
+                                            <ul
+                                                className="list-unstyled mb-0 bg-white p-2 rounded position-absolute start-50 translate-middle-x"
+                                                style={{
+                                                    top: '100%',
+                                                    zIndex: 1000,
+                                                    width: '10rem',
+                                                    boxShadow: '0 0 0 1px rgba(15, 23, 42, 0.15)'
+                                                }}
+                                            >
+                                                <li
+                                                    onClick={() => {
+                                                        handleNavLinkClick();
+                                                        navigate("/orders");
+                                                        setShowDropdown(false);
+                                                    }}
+                                                    style={{ cursor: "pointer" }}
+                                                    className="d-flex align-items-center justify-content-between"
+                                                >
+                                                    <span>Orders</span>
+                                                    <TbArrowNarrowRight style={{ opacity: 0.5, fontSize: "19px" }} />
+                                                </li>
+                                                <li
+                                                    onClick={() => {
+                                                        handleNavLinkClick();
+                                                        logout();
+                                                        setShowDropdown(false);
+                                                    }}
+                                                    style={{ cursor: "pointer" }}
+                                                    className="d-flex align-items-center justify-content-between mt-2"
+                                                >
+                                                    <span>Logout</span>
+                                                    <TbArrowNarrowRight style={{ opacity: 0.5, fontSize: "19px" }} />
+                                                </li>
+                                            </ul>
+                                        )}
+                                    </>
                                 ) : (
                                     <Button
                                         onClick={() => {
@@ -87,6 +133,7 @@ const Header = () => {
                             </div>
                         </Nav>
 
+                        {/* Desktop Cart + Profile */}
                         <div className="d-none d-lg-flex align-items-center ms-lg-3 position-relative">
                             <Link
                                 to="/cart"
@@ -121,6 +168,7 @@ const Header = () => {
                                                 onClick={() => {
                                                     handleNavLinkClick();
                                                     navigate("/orders");
+                                                    setShowDropdown(false);
                                                 }}
                                                 style={{ cursor: "pointer" }}
                                                 className="d-flex align-items-center"
@@ -132,6 +180,7 @@ const Header = () => {
                                                 onClick={() => {
                                                     handleNavLinkClick();
                                                     logout();
+                                                    setShowDropdown(false);
                                                 }}
                                                 style={{ cursor: "pointer" }}
                                                 className="d-flex align-items-center"
